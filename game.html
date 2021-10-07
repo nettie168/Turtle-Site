@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Turtle Game</title>
+    <style media="screen">
+      canvas {
+        border: 1px solid #E8F6EF;
+        background-color: #1DB9C3;
+        width: 500px;
+        height: 300px;
+    /*   position: absolute;
+        bottom: 0px;
+         left: 100px;*/
+      }
+    </style>
+  </head>
+  <body onload="startGame()" style="background-color:#000000;">
+
+  <canvas id="canvas" width="300" height="300"></canvas>
+
+<div class="footer-right">
+  <!--  <p>Social Media</p> -->
+  <audio id="music" src="bensound-betterdays.mp3">
+  </audio>
+
+  <audio id="music2" src="bensound-slowmotion.mp3">
+  </audio>
+  <p style="color:white">Use the arroy keys to avoid the plastic bags</p>
+  <p style="color:white">Refresh the page if you lose.</p>
+  <button type="button" onclick="play()">Play Music</button>
+  <button type="button" onclick="pause()">Pause Music</button>
+  <p>Music: Slow Motion and Better Days by Bensound www.bensound.com</p>
+</div>
+
+<script type="text/javascript">
+//variables
+var myGamePiece;
+//var myObstactle;
+var myObstacles = [];
+var myRewards = [];
+var myScore1;
+//  var myScore2;
+var myBackground;
+var myMusic = document.getElementById("music")
+var myMusic2 = document.getElementById("music2")
+
+function play() {
+  myMusic2.play();
+}
+
+function pause() {
+  myMusic2.pause();
+}
+
+function startGame() {
+  myGameArea.start();
+  myGamePiece = new component(90, 100, "turtle3.png", 90, 200, "image"); //(90, 45
+  //  myObstacle = new component(10, 200, "green", 300, 120)
+  myScore1 = new component("20px", "Consolas", "black", 10, 290, "text");
+  //  myScore2 = new component("20px", "Consolas", "black", 440, 290, "text");
+  //  myBackground = new component(500, 300, "404701640water-ripples-close-up-animated-gif.gif", 0, 0 "image");
+}
+
+var myGameArea = {
+  //canvas: document.createElement("canvas"),
+  canvas: document.getElementById("canvas"),
+  start: function() {
+    this.canvas.width = 500;
+    this.canvas.height = 300;
+    //  this.canvas.style.cursor="none"; //hides the cursor
+    this.context = this.canvas.getContext("2d");
+    document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+    this.frameNo = 0;
+    this.interval = setInterval(updateGameArea, 10); //20
+    window.addEventListener('keydown', function(e) {
+      myGameArea.key = e.keyCode;
+    })
+    window.addEventListener('keyup', function(e) {
+      myGameArea.key = e.false;
+    })
+  },
+  clear: function() {
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
+  },
+  stop: function() {
+    clearInterval(this.interval);
+  }
+}
+
+function component(width, height, colour, x, y, type) {
+  this.type = type;
+  if (type == "image") {
+    this.image = new Image();
+    this.image.src = colour;
+  }
+  this.width = width;
+  this.height = height;
+  this.speedX = 0;
+  this.speedY = 0;
+  this.x = x;
+  this.y = y;
+  this.update = function() {
+    ctx = myGameArea.context;
+    if (type == "text") {
+      ctx.font = this.width + " " + this.height;
+      ctx.fillStyle = colour;
+      ctx.fillText(this.text, this.x, this.y);
+    }
+    if (type == "image") {
+      ctx.drawImage(this.image,
+        this.x,
+        this.y,
+        this.width, this.height);
+    } else {
+      ctx.fillStyle = colour;
+      ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+  }
+  this.newPos = function() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+  }
+  this.crashWith = function(otherobj) {
+    var myleft = this.x;
+    var myright = this.x + (this.width);
+    var mytop = this.y;
+    var mybottom = this.y + (this.height);
+    var otherleft = otherobj.x;
+    var otherright = otherobj.x + (otherobj.width);
+    var othertop = otherobj.y;
+    var otherbottom = otherobj.y + (otherobj.height);
+    var crash = true;
+    if ((mybottom < othertop) ||
+      (mytop > otherbottom) ||
+      (myright < otherleft) ||
+      (myleft > otherright)) {
+      crash = false;
+    }
+    return crash;
+  }
+}
+
+function updateGameArea() {
+  var x, y;
+  for (i = 0; i < myObstacles.length; i += 1) {
+    if (myGamePiece.crashWith(myObstacles[i])) {
+      myGameArea.stop();
+      return;
+    }
+  }
+  myGameArea.clear();
+  myGamePiece.speedX = 0;
+  myGamePiece.speedY = 0;
+  if (myGameArea.key && myGameArea.key == 37) {
+    myGamePiece.speedX = -1;
+  }
+  if (myGameArea.key && myGameArea.key == 39) {
+    myGamePiece.speedX = 1;
+  }
+  myGameArea.frameNo += 1
+  if (myGameArea.frameNo == 1 || everyinterval(300)) {
+    x = Math.floor(Math.random() * myGameArea.canvas.width) //200;//myGameArea.canvas.width;
+    y = 5; //myGameArea.canvas.height - 200;
+    //myObstacles.push(new component(50, 30, "green", x, y));
+    widthx = Math.floor(Math.random() * (60 - 30) + 30)
+    widthy = widthx * 3 / 2
+    myObstacles.push(new component(widthx, widthy, "plasticBag.png", x, y, "image"));
+  }
+  for (i = 0; i < myObstacles.length; i += 1) {
+    myObstacles[i].y += 1;
+    myObstacles[i].update();
+  }
+  myGamePiece.newPos();
+  myGamePiece.update();
+  if (myGameArea.frameNo == 1 || everyinterval(150)) {
+    x = Math.floor(Math.random() * myGameArea.canvas.width) //200;//myGameArea.canvas.width;
+    y = 5; //myGameArea.canvas.height - 200;
+    //myObstacles.push(new component(50, 30, "green", x, y));
+    widthFish = Math.floor(Math.random() * (60 - 30) + 30)
+    heightFish = widthFish * 3 / 2
+    myRewards.push(new component(widthFish, heightFish, "JellyFish.png", x, y, "image"));
+  }
+  for (i = 0; i < myRewards.length; i += 1) {
+    myRewards[i].y += 1;
+    myRewards[i].update();
+  }
+  myScore1.text = "TIME: " + myGameArea.frameNo;
+  myScore1.update();
+  //myBackground.speedY = -1;
+  //  myBackground.newPos();
+  //  myBackground.update();
+  //  myScore2.text = "FOOD: " +
+  //myObstacle.x += -1;
+  //myObstacle.update();
+}
+
+function everyinterval(n) {
+  if ((myGameArea.frameNo / n) % 1 == 0) {
+    return true;
+  }
+  return false;
+}
+
+function moveup() {
+  myGamePiece.speedY -= 1;
+}
+
+function movedown() {
+  myGamePiece.speedY += 1;
+}
+
+function moveleft() {
+  myGamePiece.speedX -= 1;
+}
+
+function moveright() {
+  myGamePiece.speedX += 1;
+}
+
+function stopmove() {
+  myGamePiece.speedX = 0;
+  myGamePiece.speedY = 0;
+}
+
+///////////SECOND CANVAS for GRAPH ////////////
+
+var myGraph = {
+  canvas: document.createElement("canvas"),
+  start: function() {
+    this.canvas.width = 270;
+    this.canvas.height = 480;
+    this.context = this.canvas.getContext("2d");
+    document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+  }
+}
+
+var ctx2 = myGraph.context
+
+//can draw lines in canvas
+ctx2.moveTo(0, 0); //sets start point of line
+ctx2.lineTo(200, 100); //sets end point
+ctx2.stroke(); //puts a line between the two
+</script>
+
+<!--<button type="button" name="up" onmousedown="moveup()" onmouseup="stopmove()">UP</button>
+<button type="button" name="down" onmousedown="movedown()" onmouseup="stopmove()">DOWN</button>
+<button type="button" name="left" onmousedown="moveleft()" onmouseup="stopmove()">LEFT</button>
+<button type="button" name="right" onmousedown="moveright()" onmouseup="stopmove()">RIGHT</button>-->
+<!--<p>This is the game!</p> -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

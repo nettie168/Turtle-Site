@@ -3,73 +3,79 @@
 
 <head>
   <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <title>Sea Turtles</title>
   <style media="screen">
     canvas {
       border: 1px solid #E8F6EF;
       background-color: #1DB9C3;
-      position: absolute;
-      top: 850px;
-    /*  left: 600px;*/
+      width: 500px;
+      height: 300px;
+  /*   position: absolute;
+      bottom: 0px;
+       left: 100px;*/
     }
 
-    .ripples{
+    .ripples {
       position: absolute;
       top: 800px;
       left: 600px;
     }
 
-  .carousel-slides{
-    width: auto;
-  }
-  .banner{
-    align-self: auto;
-  }
+    .carousel-slides {
+      width: auto;
+    }
 
-  h1{
-    text-align: center;
-    font-size: 50px;
-  }
+    .banner {
+      align-self: auto;
+    }
 
-  h2{
-    text-align: center;
-  }
+    h1 {
+      text-align: center;
+      font-size: 50px;
+    }
 
-  .intro-row{
-    align-self: center;
-    text-align: center;
-    padding-right: 100px;
-    padding-left: 100px;
-    width: 80%;
-    line-height: 2;
-    font-size: 20px;
-    background-color: #ECE7B4;
-    color:#6D9886;
-  }
+    h2 {
+      text-align: center;
+    }
 
-  .intro-image{
-    float: left;
-    width: 400px;
-    padding-right: 40px;
-  }
+    img{
+      width: 100%;
+    }
 
-  .footer{
-    /*background-color: #E8F6EF;*/
-    color: #E8F6EF;
-    position: absolute;
-    top: 1200px;
-  }
+    .col-md-6{
+      padding: 20px 50px 0px 50px;
+      text-align: center;
+    }
 
+    .title {
+      margin: 20px 50px 50px 50px;
+      padding: 50px 50px 50px 50px;
+      background-color: #ECE7B4;
+      color: #6D9886;
+    }
+
+  /*  .intro-image {
+      float: left;
+    /*  width: 400px; */
+    /*  padding-right: 40px;
+    }*/
+
+    .footer {
+      /*background-color: #E8F6EF;*/
+      text-align: center;
+            /*position: absolute;
+      top: 1200px;*/
+    }
   </style>
 
 </head>
 
 <body onload="startGame()" style="background-color:#000000;">
 
-<!--  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <!--  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img class="d-block w-100" src="pexels-belle-co-847393.jpg" alt="First slide">
@@ -83,49 +89,54 @@
   </div>
 </div> -->
 
-<div class="top-container">
-    <img src="TurtleBanner.png" class="banner" alt="" width="1000">
+  <div class="row">
+    <!--  <img src="TurtleBanner.png" class="banner" alt="" width="1000"> -->
+    <div class="col-md-6">
+    <!--  <canvas id="canvas">Your browser does not support HTML5</canvas> -->
+
+      <img src="pexels-belle-co-847393.jpg" alt="turtle in swimming in a green-coloured sea">
+    </div>
+    <div class="col-md-6">
+      <img src="pexels-richard-segal-1618606.jpg" alt="turtle swimming out of screen">
+    </div>
+  <!--  <div class="col-md-4">
+      <img src="pexels-tom-fisk-668867.jpg" alt="turtle in a dark purple sea" width=500px>
+    </div> -->
+  </div>
+
+  <div class="title">
     <h1 style="color:#6D9886;">Sea Turtles</h1>
   </div>
 
-    <div class="intro-row">
+  <div class="row">
+    <div class="col-md-6">
       <img src="pexels-keemkai-villadums-2435728.jpg" class="intro-image" alt="turtle swimming above coral" />
+    </div>
+    <div class="col-md-6">
       <h2 style="color:#6D9886;">Turtles</h2>
       <p style="color:#6D9886;">Turtles include sea-dwellers and land-dwellers. Tortoises live on land, terrapins in fresh-water and sea turtles, you guessed it, in the sea.</p>
       <p style="color:#6D9886;">In Britain, sea turtles, tortoises and terrapins are considered as distinct groups.</p>
+      <p style="color:#6D9886;">There are different species of sea turtles including the leatherback turtles.</p>
+      <p style="color:#E8F6EF;">Leatherback turtles eat jellyfish. However in the ocean plastic bags look very similar.</p>
+      <p style="color:#E8F6EF;">These turtles have been found with plastic bags inside them because they mistook them for food</p>
+      <p style="color:#E8F6EF;">See if you can avoid the plastic bags in this <a href="game.html">Game</a></p>
     </div>
+  </div>
   <!-- <canvas id="myCanvas" width="300" height="300" style = "border:1px solid #000000;"></canvas>
 -->
 
-<div class="intro-row">
-  <canvas id="canvas"></canvas>
-<!--  <img src="404701640water-ripples-close-up-animated-gif.gif" id="ripples" alt=""> -->
-<p>Leatherback turtles eat jellyfish. However in the ocean plastic bags look very similar.</p>
-<p>These turtles have been found with plastic bags inside them because they mistook them for food</p>
-<p>See if you can avoid the plastic bags.</p>
-<p>Refresh the page if you lose.</p>
-</div>
+  <div class="" style="position:absolute; bottom:0px; left:50px;">
 
-<div class="footer">
-  <div class="footer-left">
-    <h3>Credits</h3>
-    <p>
-    Banner Photos by Belle Co, Richard Segal and Tom Fisk from Pexels
-    </p>
-    <p>Music: Slow Motion and Better Days by Bensound www.bensound.com</p>
+    <!--  <img src="404701640water-ripples-close-up-animated-gif.gif" id="ripples" alt=""> -->
   </div>
-  <div class="footer-right">
-  <!--  <p>Social Media</p> -->
-  <audio id="music" src="bensound-betterdays.mp3">
-  </audio>
 
-  <audio id="music2" src="bensound-slowmotion.mp3">
-  </audio>
-
-  <button type="button" onclick="play()">Play Music</button>
-  <button type="button" onclick="pause()">Pause Music</button>
-  </div>
-</div>
+  <div class="footer">
+    <div class="footer-left">
+      <h3>Credits</h3>
+      <p>
+        Photos by Belle Co, Richard Segal, Tom Fisk and Keemkai Villadums from Pexels
+      </p>
+    </div>
 
   <script type="text/javascript">
     //variables
@@ -134,16 +145,16 @@
     var myObstacles = [];
     var myRewards = [];
     var myScore1;
-  //  var myScore2;
+    //  var myScore2;
     var myBackground;
     var myMusic = document.getElementById("music")
     var myMusic2 = document.getElementById("music2")
 
-    function play(){
-        myMusic2.play();
-      }
+    function play() {
+      myMusic2.play();
+    }
 
-    function pause(){
+    function pause() {
       myMusic2.pause();
     }
 
@@ -152,28 +163,28 @@
       myGamePiece = new component(90, 100, "turtle3.png", 90, 200, "image"); //(90, 45
       //  myObstacle = new component(10, 200, "green", 300, 120)
       myScore1 = new component("20px", "Consolas", "black", 10, 290, "text");
-    //  myScore2 = new component("20px", "Consolas", "black", 440, 290, "text");
-  //  myBackground = new component(500, 300, "404701640water-ripples-close-up-animated-gif.gif", 0, 0 "image");
+      //  myScore2 = new component("20px", "Consolas", "black", 440, 290, "text");
+      //  myBackground = new component(500, 300, "404701640water-ripples-close-up-animated-gif.gif", 0, 0 "image");
     }
 
     var myGameArea = {
       //canvas: document.createElement("canvas"),
       canvas: document.getElementById("canvas"),
       start: function() {
-        this.canvas.width = 500; //270;
-        this.canvas.height = 300; //480;
-      //  this.canvas.style.cursor="none"; //hides the cursor
+        this.canvas.width = 500;
+        this.canvas.height = 300;
+        //  this.canvas.style.cursor="none"; //hides the cursor
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
         this.interval = setInterval(updateGameArea, 10); //20
-        window.addEventListener('keydown',function(e){
+        window.addEventListener('keydown', function(e) {
           myGameArea.key = e.keyCode;
         })
-        window.addEventListener('keyup',function(e){
+        window.addEventListener('keyup', function(e) {
           myGameArea.key = e.false;
         })
-         },
+      },
       clear: function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
       },
@@ -184,7 +195,7 @@
 
     function component(width, height, colour, x, y, type) {
       this.type = type;
-      if (type == "image"){
+      if (type == "image") {
         this.image = new Image();
         this.image.src = colour;
       }
@@ -196,21 +207,20 @@
       this.y = y;
       this.update = function() {
         ctx = myGameArea.context;
-        if (type == "text"){
+        if (type == "text") {
           ctx.font = this.width + " " + this.height;
           ctx.fillStyle = colour;
           ctx.fillText(this.text, this.x, this.y);
         }
-        if (type =="image"){
+        if (type == "image") {
           ctx.drawImage(this.image,
-          this.x,
-          this.y,
-          this.width,this.height);
+            this.x,
+            this.y,
+            this.width, this.height);
+        } else {
+          ctx.fillStyle = colour;
+          ctx.fillRect(this.x, this.y, this.width, this.height);
         }
-        else {
-        ctx.fillStyle = colour;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-      }
       }
       this.newPos = function() {
         this.x += this.speedX;
@@ -247,43 +257,47 @@
       myGameArea.clear();
       myGamePiece.speedX = 0;
       myGamePiece.speedY = 0;
-      if (myGameArea.key && myGameArea.key == 37){myGamePiece.speedX = -1;}
-      if (myGameArea.key && myGameArea.key == 39){myGamePiece.speedX = 1; }
+      if (myGameArea.key && myGameArea.key == 37) {
+        myGamePiece.speedX = -1;
+      }
+      if (myGameArea.key && myGameArea.key == 39) {
+        myGamePiece.speedX = 1;
+      }
       myGameArea.frameNo += 1
-      if (myGameArea.frameNo == 1 || everyinterval(300)){
-        x = Math.floor(Math.random()*myGameArea.canvas.width)//200;//myGameArea.canvas.width;
-        y = 5;//myGameArea.canvas.height - 200;
-      //myObstacles.push(new component(50, 30, "green", x, y));
-      widthx = Math.floor(Math.random()*(60-30)+30)
-      widthy = widthx*3/2
-      myObstacles.push(new component(widthx, widthy, "plasticBag.png", x, y,"image"));
-    }
-    for (i = 0; i < myObstacles.length; i += 1) {
-      myObstacles[i].y += 1;
-      myObstacles[i].update();
-    }
-    myGamePiece.newPos();
-    myGamePiece.update();
-    if (myGameArea.frameNo == 1 || everyinterval(150)){
-      x = Math.floor(Math.random()*myGameArea.canvas.width)//200;//myGameArea.canvas.width;
-      y = 5;//myGameArea.canvas.height - 200;
-    //myObstacles.push(new component(50, 30, "green", x, y));
-    widthFish = Math.floor(Math.random()*(60-30)+30)
-    heightFish = widthFish*3/2
-    myRewards.push(new component(widthFish, heightFish, "JellyFish.png", x, y,"image"));
-    }
-    for (i = 0; i < myRewards.length; i += 1) {
-      myRewards[i].y +=1;
-      myRewards[i].update();
-    }
-    myScore1.text = "TIME: " + myGameArea.frameNo;
-    myScore1.update();
-    //myBackground.speedY = -1;
-  //  myBackground.newPos();
-  //  myBackground.update();
-  //  myScore2.text = "FOOD: " +
-    //myObstacle.x += -1;
-    //myObstacle.update();
+      if (myGameArea.frameNo == 1 || everyinterval(300)) {
+        x = Math.floor(Math.random() * myGameArea.canvas.width) //200;//myGameArea.canvas.width;
+        y = 5; //myGameArea.canvas.height - 200;
+        //myObstacles.push(new component(50, 30, "green", x, y));
+        widthx = Math.floor(Math.random() * (60 - 30) + 30)
+        widthy = widthx * 3 / 2
+        myObstacles.push(new component(widthx, widthy, "plasticBag.png", x, y, "image"));
+      }
+      for (i = 0; i < myObstacles.length; i += 1) {
+        myObstacles[i].y += 1;
+        myObstacles[i].update();
+      }
+      myGamePiece.newPos();
+      myGamePiece.update();
+      if (myGameArea.frameNo == 1 || everyinterval(150)) {
+        x = Math.floor(Math.random() * myGameArea.canvas.width) //200;//myGameArea.canvas.width;
+        y = 5; //myGameArea.canvas.height - 200;
+        //myObstacles.push(new component(50, 30, "green", x, y));
+        widthFish = Math.floor(Math.random() * (60 - 30) + 30)
+        heightFish = widthFish * 3 / 2
+        myRewards.push(new component(widthFish, heightFish, "JellyFish.png", x, y, "image"));
+      }
+      for (i = 0; i < myRewards.length; i += 1) {
+        myRewards[i].y += 1;
+        myRewards[i].update();
+      }
+      myScore1.text = "TIME: " + myGameArea.frameNo;
+      myScore1.update();
+      //myBackground.speedY = -1;
+      //  myBackground.newPos();
+      //  myBackground.update();
+      //  myScore2.text = "FOOD: " +
+      //myObstacle.x += -1;
+      //myObstacle.update();
     }
 
     function everyinterval(n) {
@@ -314,7 +328,7 @@
       myGamePiece.speedY = 0;
     }
 
-///////////SECOND CANVAS for GRAPH ////////////
+    ///////////SECOND CANVAS for GRAPH ////////////
 
     var myGraph = {
       canvas: document.createElement("canvas"),
@@ -329,18 +343,15 @@
     var ctx2 = myGraph.context
 
     //can draw lines in canvas
-    ctx2.moveTo(0,0); //sets start point of line
-    ctx2.lineTo(200,100); //sets end point
+    ctx2.moveTo(0, 0); //sets start point of line
+    ctx2.lineTo(200, 100); //sets end point
     ctx2.stroke(); //puts a line between the two
-
   </script>
 
-<!--<button type="button" name="up" onmousedown="moveup()" onmouseup="stopmove()">UP</button>
+  <!--<button type="button" name="up" onmousedown="moveup()" onmouseup="stopmove()">UP</button>
   <button type="button" name="down" onmousedown="movedown()" onmouseup="stopmove()">DOWN</button>
   <button type="button" name="left" onmousedown="moveleft()" onmouseup="stopmove()">LEFT</button>
   <button type="button" name="right" onmousedown="moveright()" onmouseup="stopmove()">RIGHT</button>-->
-
-  <p>This is the game!</p>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
