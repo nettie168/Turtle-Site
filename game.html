@@ -61,7 +61,7 @@ function startGame() {
   //  myObstacle = new component(10, 200, "green", 300, 120)
   myScore1 = new component("20px", "Consolas", "black", 10, 290, "text");
   //  myScore2 = new component("20px", "Consolas", "black", 440, 290, "text");
-  //  myBackground = new component(500, 300, "404701640water-ripples-close-up-animated-gif.gif", 0, 0 "image");
+  myBackground = new component(500, 500, "turtlebackground4.png", 0, 0, "background");
 }
 
 var myGameArea = {
@@ -92,7 +92,7 @@ var myGameArea = {
 
 function component(width, height, colour, x, y, type) {
   this.type = type;
-  if (type == "image") {
+  if (type == "image" || type == "background") {
     this.image = new Image();
     this.image.src = colour;
   }
@@ -109,11 +109,11 @@ function component(width, height, colour, x, y, type) {
       ctx.fillStyle = colour;
       ctx.fillText(this.text, this.x, this.y);
     }
-    if (type == "image") {
-      ctx.drawImage(this.image,
-        this.x,
-        this.y,
-        this.width, this.height);
+    if (type == "image" || type == "background") {
+      ctx.drawImage(this.image,this.x,this.y, this.width, this.height);
+      if (type == "background"){
+      ctx.drawImage(this.image, this.x, this.y-this.height, this.width,this.height)
+    }
     } else {
       ctx.fillStyle = colour;
       ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -122,6 +122,11 @@ function component(width, height, colour, x, y, type) {
   this.newPos = function() {
     this.x += this.speedX;
     this.y += this.speedY;
+   if (this.type =="background"){
+      if(this.y==(this.height)){
+       this.y=0;
+      }
+    }
   }
   this.crashWith = function(otherobj) {
     var myleft = this.x;
@@ -143,6 +148,7 @@ function component(width, height, colour, x, y, type) {
   }
 }
 
+
 function updateGameArea() {
   var x, y;
   for (i = 0; i < myObstacles.length; i += 1) {
@@ -152,6 +158,9 @@ function updateGameArea() {
     }
   }
   myGameArea.clear();
+  myBackground.speedY = 1;
+  myBackground.newPos();
+  myBackground.update();
   myGamePiece.speedX = 0;
   myGamePiece.speedY = 0;
   if (myGameArea.key && myGameArea.key == 37) {
@@ -167,7 +176,7 @@ function updateGameArea() {
     //myObstacles.push(new component(50, 30, "green", x, y));
     widthx = Math.floor(Math.random() * (60 - 30) + 30)
     widthy = widthx * 3 / 2
-    myObstacles.push(new component(widthx, widthy, "plasticBag.png", x, y, "image"));
+    myObstacles.push(new component(widthx, widthy, "plasticbagseethrough1.png", x, y, "image"));
   }
   for (i = 0; i < myObstacles.length; i += 1) {
     myObstacles[i].y += 1;
@@ -181,7 +190,7 @@ function updateGameArea() {
     //myObstacles.push(new component(50, 30, "green", x, y));
     widthFish = Math.floor(Math.random() * (60 - 30) + 30)
     heightFish = widthFish * 3 / 2
-    myRewards.push(new component(widthFish, heightFish, "JellyFish.png", x, y, "image"));
+    myRewards.push(new component(widthFish, heightFish, "jellyfishseethrough.png", x, y, "image"));
   }
   for (i = 0; i < myRewards.length; i += 1) {
     myRewards[i].y += 1;
@@ -189,9 +198,6 @@ function updateGameArea() {
   }
   myScore1.text = "TIME: " + myGameArea.frameNo;
   myScore1.update();
-  //myBackground.speedY = -1;
-  //  myBackground.newPos();
-  //  myBackground.update();
   //  myScore2.text = "FOOD: " +
   //myObstacle.x += -1;
   //myObstacle.update();
